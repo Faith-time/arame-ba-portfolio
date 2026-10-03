@@ -69,7 +69,7 @@ const currentPhases = [
     title: 'Réalisation',
     items: [
       'Examen des documents d\u2019exécution (plans de fondations, de structure, de cloisonnement, de revêtements, etc.) sur fiches d\u2019examen de documents (FED), avec un avis favorable, défavorable, suspendu, hors mission ou sans objet selon le dossier.',
-      'Visites de suivi des travaux sur chantier, puis rédaction d\u2019une fiche de visite (FVC) assortie d\u2019un avis favorable, suspendu ou défavorable selon ce qui est constaté.',
+      'Visites de suivi des travaux sur chantier, puis rédaction d\u2019une fiche de visite (FVC) formulant un avis favorable, suspendu ou défavorable selon les constats effectués',
     ],
   },
   {
@@ -299,7 +299,7 @@ function Home({ navigate }: { navigate: (page: Page) => void }) {
     <section className="hero section-pad">
       <div className="hero-copy">
         <p className="eyebrow"><span className="eyebrow-line" /> Contrôle technique de la construction · Île-de-France</p>
-        <h1>Sécuriser vos projets,<br /><em>de la conception à la fin des travaux.</em></h1>
+<h1>Sécuriser vos projets,<br /><em>de la conception à la réception.</em></h1>
         <p className="hero-text">J'interviens de la conception à la fin des travaux pour garantir la conformité, la sécurité et la qualité des maisons individuelles, des bâtiments d'habitation, des locaux professionnels et des ERP.</p>
         <div className="hero-actions"><button className="button button-dark" onClick={() => navigate('expertise')}>Découvrir mon expertise <ArrowUpRight size={16} /></button><button className="text-link" onClick={() => navigate('about')}>Mon parcours <ChevronRight size={16} /></button></div>
         <div className="cv-actions"><a className="cv-link" href="/cv-arame-ba.pdf" target="_blank" rel="noreferrer"><ExternalLink size={15} /> Consulter le CV</a><a className="cv-link cv-download" href="/cv-arame-ba.pdf" download="CV-Arame-BA.pdf"><Download size={15} /> Télécharger le CV</a></div>
@@ -320,8 +320,7 @@ function Home({ navigate }: { navigate: (page: Page) => void }) {
       <div className="manifesto-grid">
         <h2>Garantir la conformité, <span>à chaque étape.</span></h2>
         <div>
-          <p>Ingénieure en génie civil spécialisée en conception et contrôle de la construction, diplômée d'une formation en alternance de trois ans, je suis chaque opération du rapport initial au rapport final de contrôle technique. Rigoureuse, impliquée et dotée d'un bon sens de l'analyse, je m'investis pleinement dans chacune de mes missions.</p>
-          <button className="text-link" onClick={() => navigate('about')}>En savoir plus <ChevronRight size={16} /></button>
+<p>Ingénieure spécialisée en contrôle technique de la construction, j'analyse les dossiers de conception, j'examine les documents d'exécution et je suis le chantier jusqu'à la réception, pour sécuriser chaque projet du premier plan à la dernière visite. Rigoureuse, impliquée et dotée d'un bon sens de l'analyse, je m'investis pleinement dans chacune de mes missions.</p>          <button className="text-link" onClick={() => navigate('about')}>En savoir plus <ChevronRight size={16} /></button>
         </div>
       </div>
     </section>
