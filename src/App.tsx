@@ -393,7 +393,7 @@ function About({ navigate }: { navigate: (page: Page) => void }) {
         <div className="profile-image"><img src={portraitUrl} alt="Portrait d'Arame BA" /></div>
         <p className="quote">« Rigoureuse, impliquée, avec un bon sens de l'analyse. »</p>
         <div className="profile-meta">
-          <span><MapPin size={14} /> Villiers-sur-Marne, 94350</span>
+          <span><MapPin size={14} /> Chelles, 77500</span>
           <span><Mail size={14} /> {email}</span>
           <span><Phone size={14} /> +33 7 60 63 96 89</span>
         </div>
@@ -523,13 +523,7 @@ function Ouvrages({ navigate }: { navigate: (page: Page) => void }) {
           <div className="tag-list">{tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
         </article>
       ))}
-      <article className="ouvrage-card ouvrage-etc">
-        <span className="ouvrage-icon"><Plus size={22} strokeWidth={1.6} /></span>
-        <div>
-          <h2>Et d'autres ouvrages, etc.</h2>
-          <p className="ouvrage-text">Cette liste n'est pas exhaustive : je m'adapte aux particularités de chaque opération.</p>
-        </div>
-      </article>
+    
     </div>
 
     <div className="quote-banner"><Sparkles size={22} /><p>« Je m'investis pleinement dans chacune de mes missions. »</p><span>— Arame BA</span></div>
@@ -549,7 +543,7 @@ function Contact({ sent, submitForm, onReset }: { sent: boolean; submitForm: (ev
       <div className="contact-details">
         <div className="contact-detail"><span className="detail-icon"><Mail size={18} /></span><div><span>Email</span><a href={`mailto:${email}`}>{email}</a></div></div>
         <div className="contact-detail"><span className="detail-icon"><Phone size={18} /></span><div><span>Téléphone</span><a href="tel:+33760639689">+33 7 60 63 96 89</a></div></div>
-        <div className="contact-detail"><span className="detail-icon"><MapPin size={18} /></span><div><span>Localisation</span><p>Villiers-sur-Marne, 94350</p></div></div>
+        <div className="contact-detail"><span className="detail-icon"><MapPin size={18} /></span><div><span>Localisation</span><p>Chelles, 77500</p></div></div>
         <div className="availability"><span className="availability-dot" /> Disponible pour de nouvelles opportunités</div>
       </div>
       <form className="contact-form" onSubmit={submitForm}>
