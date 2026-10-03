@@ -18,7 +18,6 @@ import {
   Menu,
   MoveUpRight,
   Phone,
-  Plus,
   Ruler,
   Send,
   Sparkles,
@@ -68,8 +67,8 @@ const currentPhases = [
   {
     title: 'Réalisation',
     items: [
-      'Examen des documents d\u2019exécution (plans de fondations, de structure, de cloisonnement, de revêtements, etc.) sur fiches d\u2019examen de documents (FED), avec un avis favorable, défavorable, suspendu, hors mission ou sans objet selon le dossier.',
-      'Visites de suivi des travaux sur chantier, puis rédaction d\u2019une fiche de visite (FVC) formulant un avis favorable, suspendu ou défavorable selon les constats effectués',
+      'Examen des différents dossiers techniques liés aux fondations, à la structure, au cloisonnement, aux revêtements, à la ventilation et à la plomberie, sur fiches d\u2019examen de documents (FED), avec un avis favorable, défavorable, suspendu, hors mission ou sans objet selon le dossier.',
+      'Visites de suivi des travaux sur chantier, puis rédaction d\u2019une fiche de visite (FVC) formulant un avis favorable, suspendu ou défavorable selon les constats effectués.',
     ],
   },
   {
@@ -148,8 +147,8 @@ const phaseCards = [
   {
     icon: Ruler,
     title: 'Documents d\u2019exécution et travaux',
-    text: 'J\u2019examine les plans de fondations, de structure, de cloisonnement, de revêtements, etc., puis je suis les travaux lors de visites sur chantier.',
-    tags: ['Fiches d\u2019examen (FED)', 'Visites de suivi (FVC)', 'etc.'],
+    text: 'J\u2019examine les différents dossiers techniques liés aux fondations, à la structure, au cloisonnement, aux revêtements, à la ventilation et à la plomberie, et j\u2019assure le suivi de la réalisation des travaux à travers des visites sur chantier.',
+    tags: ['Fiches d\u2019examen (FED)', 'Visites de suivi (FVC)'],
   },
   {
     icon: ClipboardCheck,
@@ -161,38 +160,47 @@ const phaseCards = [
 
 /* ---------------------------------------------------------------
    OUVRAGES
+   Le même processus s'applique à toutes les familles d'ouvrages,
+   avec l'attestation d'accessibilité PMR partout.
    --------------------------------------------------------------- */
+const processTags = [
+  'Rapport initial',
+  'Examen des documents d\u2019exécution',
+  'Visites de suivi',
+  'Rapport final',
+];
+
 const ouvrages = [
   {
     icon: HomeIcon,
     title: 'Maisons individuelles',
     kind: 'Habitat individuel',
-    text: 'Un contrôle technique suivi de la conception à la fin des travaux, du rapport initial au rapport final.',
-    tags: ['Rapport initial', 'Documents d\u2019exécution', 'Visites de suivi', 'Rapport final'],
+    text: 'Un contrôle technique suivi de la conception à la fin des travaux, du rapport initial au rapport final, avec attestation d\u2019accessibilité PMR.',
+    tags: [...processTags, 'Attestation PMR'],
     tone: 'tone-sand',
   },
   {
     icon: Building2,
     title: 'Bâtiments d\u2019habitation',
     kind: 'Habitation',
-    text: 'Contrôle technique des bâtiments d\u2019habitation, avec rédaction des attestations d\u2019accessibilité PMR.',
-    tags: ['Conformité', 'Attestation PMR'],
+    text: 'Contrôle technique des bâtiments d\u2019habitation, du rapport initial au rapport final, avec rédaction des attestations d\u2019accessibilité PMR.',
+    tags: [...processTags, 'Conformité', 'Attestation PMR'],
     tone: 'tone-blue',
   },
   {
     icon: BriefcaseBusiness,
     title: 'Bâtiments à usage professionnel',
     kind: 'Code du travail',
-    text: 'Bâtiments à usage professionnel, supérieurs et inférieurs à 8 mètres : vérification de la conformité et attestations d\u2019accessibilité PMR.',
-    tags: ['Conformité', 'Attestation PMR'],
+    text: 'Bâtiments à usage professionnel, supérieurs et inférieurs à 8 mètres : contrôle technique du rapport initial au rapport final, vérification de la conformité et attestations d\u2019accessibilité PMR.',
+    tags: [...processTags, 'Conformité', 'Attestation PMR'],
     tone: 'tone-sage',
   },
   {
     icon: Users,
     title: 'Établissements recevant du public',
     kind: 'ERP',
-    text: 'Contrôle technique des ERP, attestations d\u2019accessibilité PMR et, selon le classement, rapport de vérification réglementaire après travaux.',
-    tags: ['Attestation PMR', 'RVRAT'],
+    text: 'Contrôle technique des ERP, du rapport initial au rapport final, attestations d\u2019accessibilité PMR et, selon le classement, rapport de vérification réglementaire après travaux.',
+    tags: [...processTags, 'Attestation PMR', 'RVRAT'],
     tone: 'tone-dark',
   },
 ];
@@ -299,12 +307,12 @@ function Home({ navigate }: { navigate: (page: Page) => void }) {
     <section className="hero section-pad">
       <div className="hero-copy">
         <p className="eyebrow"><span className="eyebrow-line" /> Contrôle technique de la construction · Île-de-France</p>
-<h1>Sécuriser vos projets,<br /><em>de la conception à la réception.</em></h1>
-        <p className="hero-text">J'interviens de la conception à la fin des travaux pour garantir la conformité, la sécurité et la qualité des maisons individuelles, des bâtiments d'habitation, des locaux professionnels et des ERP.</p>
+        <h1>Sécuriser vos projets,<br /><em>de la conception à la réception.</em></h1>
+        <p className="hero-text">J'interviens à chaque étape pour garantir la conformité, la sécurité et la qualité des maisons individuelles, des bâtiments d'habitation, des locaux professionnels et des ERP.</p>
         <div className="hero-actions"><button className="button button-dark" onClick={() => navigate('expertise')}>Découvrir mon expertise <ArrowUpRight size={16} /></button><button className="text-link" onClick={() => navigate('about')}>Mon parcours <ChevronRight size={16} /></button></div>
         <div className="cv-actions"><a className="cv-link" href="/cv-arame-ba.pdf" target="_blank" rel="noreferrer"><ExternalLink size={15} /> Consulter le CV</a><a className="cv-link cv-download" href="/cv-arame-ba.pdf" download="CV-Arame-BA.pdf"><Download size={15} /> Télécharger le CV</a></div>
       </div>
-      <div className="hero-visual"><div className="hero-image-wrap"><img src={portraitUrl} alt="Portrait d'Arame BA, ingénieure en contrôle technique de la construction" /><div className="image-caption"><span>Conformité · rigueur · chantier</span></div></div><div className="floating-stamp"><Sparkles size={17} /><span>Le contrôle technique<br />au service du bâti</span></div></div>
+      <div className="hero-visual"><div className="hero-image-wrap"><img src={portraitUrl} alt="Portrait d'Arame BA, ingénieure en contrôle technique de la construction" /><div className="image-caption"><span>Conformité · rigueur · chantier</span></div></div><div className="floating-stamp"><Sparkles size={17} /><span>Le contrôle technique<br />au service du bâtiment</span></div></div>
       <div className="hero-side-note">ARAME BA <span>—</span> PORTFOLIO 2026</div>
     </section>
 
@@ -320,7 +328,8 @@ function Home({ navigate }: { navigate: (page: Page) => void }) {
       <div className="manifesto-grid">
         <h2>Garantir la conformité, <span>à chaque étape.</span></h2>
         <div>
-<p>Ingénieure spécialisée en contrôle technique de la construction, j'analyse les dossiers de conception, j'examine les documents d'exécution et je suis le chantier jusqu'à la réception, pour sécuriser chaque projet du premier plan à la dernière visite. Rigoureuse, impliquée et dotée d'un bon sens de l'analyse, je m'investis pleinement dans chacune de mes missions.</p>          <button className="text-link" onClick={() => navigate('about')}>En savoir plus <ChevronRight size={16} /></button>
+          <p>Ingénieure spécialisée en contrôle technique de la construction, j'analyse les dossiers de conception, j'examine les documents d'exécution et je suis le chantier jusqu'à la réception, pour sécuriser chaque projet du premier plan à la dernière visite. Rigoureuse, impliquée et dotée d'un bon sens de l'analyse, je m'investis pleinement dans chacune de mes missions.</p>
+          <button className="text-link" onClick={() => navigate('about')}>En savoir plus <ChevronRight size={16} /></button>
         </div>
       </div>
     </section>
@@ -390,7 +399,7 @@ function About({ navigate }: { navigate: (page: Page) => void }) {
     <div className="about-layout">
       <aside className="profile-card">
         <div className="profile-image"><img src={portraitUrl} alt="Portrait d'Arame BA" /></div>
-        <p className="quote">« Rigoureuse, impliquée, avec un bon sens de l'analyse. »</p>
+        <p className="quote">«&nbsp;Rigoureuse, impliquée, avec un bon sens de l'analyse.&nbsp;»</p>
         <div className="profile-meta">
           <span><MapPin size={14} /> Chelles, 77500</span>
           <span><Mail size={14} /> {email}</span>
@@ -522,10 +531,9 @@ function Ouvrages({ navigate }: { navigate: (page: Page) => void }) {
           <div className="tag-list">{tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
         </article>
       ))}
-    
     </div>
 
-    <div className="quote-banner"><Sparkles size={22} /><p>« Je m'investis pleinement dans chacune de mes missions. »</p><span>— Arame BA</span></div>
+    <div className="quote-banner"><Sparkles size={22} /><p>«&nbsp;Je m'investis pleinement dans chacune de mes missions.&nbsp;»</p><span>— Arame BA</span></div>
     <div className="page-next"><span>Suivant</span><button onClick={() => navigate('contact')}>Me contacter <ArrowUpRight size={16} /></button></div>
   </div>;
 }
