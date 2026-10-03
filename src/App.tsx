@@ -155,7 +155,7 @@ function App() {
           <span className="brand-mark"><HardHat size={18} /></span>
           <span>ARAME BÂ<span className="brand-dot">.</span></span>
         </button>
-        <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`}>
+        <nav id="main-nav" className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Navigation principale">
           {navigation.map((item) => (
             <button key={item.id} className={page === item.id ? 'active' : ''} onClick={() => navigate(item.id)}>
               {item.label}
@@ -163,7 +163,15 @@ function App() {
           ))}
         </nav>
         <button className="header-cta" onClick={() => navigate('contact')}>Parlons de votre projet <ArrowUpRight size={15} /></button>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Ouvrir le menu">{menuOpen ? <X /> : <Menu />}</button>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={menuOpen}
+          aria-controls="main-nav"
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </header>
 
       <main>
@@ -179,13 +187,13 @@ function App() {
           <span className="brand-mark"><HardHat size={18} /></span>
           <span>ARAME BÂ<span className="brand-dot">.</span></span>
         </div>
-        <nav className="footer-nav">
+        <nav className="footer-nav" aria-label="Navigation secondaire">
           {navigation.map((item) => (
             <button key={item.id} className={page === item.id ? 'active' : ''} onClick={() => navigate(item.id)}>{item.label}</button>
           ))}
         </nav>
         <div className="footer-meta">
-          <span>© 2025 Arame BÂ</span>
+          <span>© 2026 Arame BÂ</span>
           <button onClick={() => navigate('contact')}>Disponible pour de nouveaux projets <MoveUpRight size={14} /></button>
         </div>
       </footer>
@@ -208,7 +216,7 @@ function Home({ navigate }: { navigate: (page: Page) => void }) {
         <div className="cv-actions"><a className="cv-link" href="/cv-arame-ba.pdf" target="_blank" rel="noreferrer"><ExternalLink size={15} /> Consulter le CV</a><a className="cv-link cv-download" href="/cv-arame-ba.pdf" download="CV-Arame-Ba.pdf"><Download size={15} /> Télécharger le CV</a></div>
       </div>
       <div className="hero-visual"><div className="hero-image-wrap"><img src={portraitUrl} alt="Portrait professionnel d'une ingénieure sur un chantier" /><div className="image-caption"><span>01</span><span>Conformité · rigueur · chantier</span></div></div><div className="floating-stamp"><Sparkles size={17} /><span>Le contrôle technique<br />au service du bâti</span></div></div>
-      <div className="hero-side-note">ARAME BÂ <span>—</span> PORTFOLIO 2025</div>
+      <div className="hero-side-note">ARAME BÂ <span>—</span> PORTFOLIO 2026</div>
     </section>
     <section className="home-strip">
       <div className="strip-item"><strong>01</strong><span>Une spécialisation<br />en contrôle technique</span></div>
@@ -238,18 +246,18 @@ function About({ navigate }: { navigate: (page: Page) => void }) {
       <aside className="profile-card">
         <div className="profile-image"><img src={portraitUrl} alt="Portrait d'Arame Bâ" /></div>
         <p className="quote">« Garantir la conformité, à chaque étape du projet. »</p>
-        <div className="profile-meta"><span><MapPin size={14} /> Chelles , 77500 </span><span><Mail size={14} /> arameba662@gmail.com</span><span><Phone size={14} /> +33 7 60 63 96 89</span></div>
+        <div className="profile-meta"><span><MapPin size={14} /> Chelles, 77500</span><span><Mail size={14} /> arameba662@gmail.com</span><span><Phone size={14} /> +33 7 60 63 96 89</span></div>
       </aside>
       <div className="timeline-area">
         <div className="section-label"><BriefcaseBusiness size={17} /> Expériences professionnelles</div>
-        {experiences.map((experience) => <article className="timeline-item" key={experience.period}><div className="timeline-period">{experience.period}</div><div className="timeline-dot" /><div className="timeline-content"><h3>{experience.role}</h3><p className="company">{experience.company}</p><ul>{experience.details.map((detail) => <li key={detail}>{detail}</li>)}</ul></div></article>)}
+        {experiences.map((experience, index) => <article className={`timeline-item${index === 0 ? ' is-current' : ''}`} key={experience.period}><div className="timeline-period">{experience.period}</div><div className="timeline-dot" /><div className="timeline-content"><h3>{experience.role}</h3><p className="company">{experience.company}</p><ul>{experience.details.map((detail) => <li key={detail}>{detail}</li>)}</ul></div></article>)}
       </div>
     </div>
     <div className="cv-panel">
       <div><p className="eyebrow"><span className="eyebrow-line" /> Document professionnel</p><h2>Mon Curriculum Vitae Complet</h2><p>Retrouvez mon parcours, mes expériences, ma formation et mes compétences dans un document prêt à être partagé.</p></div>
       <div className="cv-panel-actions"><a className="button button-dark" href="/cv-arame-ba.pdf" target="_blank" rel="noreferrer">Consulter <ExternalLink size={15} /></a><a className="cv-panel-download" href="/cv-arame-ba.pdf" download="CV-Arame-Ba.pdf"><Download size={15} /> Télécharger</a></div>
     </div>
-       <div className="education-block">
+    <div className="education-block">
       <div className="section-label"><GraduationCap size={17} /> Formation</div>
       <div className="education-grid">
         <div><span>2021 — 2024</span><h3>Diplôme d'ingénieurs en conception et contrôle de la construction</h3><p>ESIEE Paris · Champs-sur-Marne</p></div>
@@ -292,16 +300,16 @@ function Projects({ navigate }: { navigate: (page: Page) => void }) {
 function Contact({ sent, submitForm }: { sent: boolean; submitForm: (event: FormEvent<HTMLFormElement>) => void }) {
   return <div className="content-page section-pad contact-page">
     <PageIntro eyebrow="Contact" title={<>Un projet en tête ?<br /><em>Parlons-en.</em></>}>
-      <p className="intro-aside">Une question, un besoin de contrôle technique, ou simplement envie d'échanger ?   <br />  Ma boîte mail est ouverte.</p>
+      <p className="intro-aside">Une question, un besoin de contrôle technique, ou simplement envie d'échanger ? Ma boîte mail est ouverte.</p>
     </PageIntro>
     <div className="contact-layout">
       <div className="contact-details">
         <div className="contact-detail"><span className="detail-icon"><Mail size={18} /></span><div><span>Email</span><a href="mailto:arameba662@gmail.com">arameba662@gmail.com</a></div></div>
         <div className="contact-detail"><span className="detail-icon"><Phone size={18} /></span><div><span>Téléphone</span><a href="tel:+33760636989">+33 7 60 63 96 89</a></div></div>
-        <div className="contact-detail"><span className="detail-icon"><MapPin size={18} /></span><div><span>Localisation</span><p>Chelles , 77500 </p></div></div>
+        <div className="contact-detail"><span className="detail-icon"><MapPin size={18} /></span><div><span>Localisation</span><p>Chelles, 77500</p></div></div>
         <div className="availability"><span className="availability-dot" /> Disponible pour de nouvelles opportunités</div>
       </div>
-      <form className="contact-form" onSubmit={submitForm}>{sent ? <div className="success-message"><span><Check size={22} /></span><h2>Message bien reçu.</h2><p>Merci pour votre message. Arame reviendra vers vous très prochainement.</p></div> : <><div className="form-row"><label>Votre nom<input name="name" required placeholder="Prénom Nom" /></label><label>Votre email<input type="email" name="email" required placeholder="vous@exemple.com" /></label></div><label>Votre message<textarea name="message" required placeholder="Dites-moi quelques mots sur votre projet..." rows={5} /></label><button className="button button-dark" type="submit">Envoyer le message <Send size={16} /></button></>}</form>
+      <form className="contact-form" onSubmit={submitForm}>{sent ? <div className="success-message"><span><Check size={22} /></span><h2>Message bien reçu.</h2><p>Merci pour votre message. Arame reviendra vers vous très prochainement.</p></div> : <><div className="form-row"><label>Votre nom<input name="name" required placeholder="Prénom Nom" autoComplete="name" /></label><label>Votre email<input type="email" name="email" required placeholder="vous@exemple.com" autoComplete="email" /></label></div><label>Votre message<textarea name="message" required placeholder="Dites-moi quelques mots sur votre projet..." rows={5} /></label><button className="button button-dark" type="submit">Envoyer le message <Send size={16} /></button></>}</form>
     </div>
   </div>;
 }
